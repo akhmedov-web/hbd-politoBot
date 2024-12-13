@@ -1,13 +1,8 @@
-import TelegramBot from "node-telegram-bot-api";
-import express from "express";
-import cors from "cors";
+const TelegramBot = require("node-telegram-bot-api");
 
 const token = "7616031779:AAHVBltvv_tvzTQjWbU4KpoAQ3RuBoubYWg";
 
 const bot = new TelegramBot(token, { polling: true });
-const app = express();
-app.use(express.json());
-app.use(cors());
 
 const main = () => {
   bot.on("message", async (msg) => {
@@ -63,7 +58,5 @@ const main = () => {
 bot.on("polling_error", (error) => {
   console.error("Polling error:", error);
 });
-
-app.listen(process.env.PORT || 8000, () => console.log("Server started!"));
 
 main();
